@@ -51,6 +51,8 @@ The performance tests were conducted on separate VPS instances hosted on VULTR a
 - Client: hosted in Amsterdam, Netherlands
 - Server: hosted in Frankfurt, Germany
 
+There are also results for tests that were ran on localhost.
+
 Both machines have similar specifications (1vCPU, 2GB RAM, Debian 11 x64). The source files were compiled with GCC using `-O3 -Wall`. The OS UDP buffer size was the default value (200KB).
 
 The following message sizes were tested:
@@ -106,3 +108,25 @@ The UDP Stream method is slower than TCP Stream, which wasn't expected. Upon fur
 the OS buffer size for UDP (200KB) wasn't large enough. However, the UDP Stop-and-Wait method is faster than TCP Stop-and-Wait. For large messages, the difference between the two protocols is small when using the Stream mechanism.
 
 Considering the given configuration, TCP Stream is the best method for reliable data transfer. TCP Stop-and-Wait is redundant because TCP by design is reliable, and such a mechanism only adds overhead with no benefits. UDP Stop-and-Wait works, but is way slower than TCP Stream in the given configuration, and is therefore a worse candidate.
+
+### Localhost results
+
+#### Transfer time - all
+
+The chart below shows the transfer time for all methods.
+
+<p align="center">
+  <img src="results/local_transfer_all.png" alt="transfer time">
+</p>
+
+#### Transfer time - stream
+
+The chart below shows the transfer time for the Stream method.
+
+<p align="center">
+  <img src="results/local_transfer_stream.png" alt="transfer time">
+</p>
+
+### Localhost interpretation
+
+The results for the localhost tests are similar to the ones that were done on dedicated servers. However, the difference is that for Stop-and-Wait the transfer time taken actually increases if the message size is too large, which doesn't happen on dedicated servers.
