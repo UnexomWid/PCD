@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc client.c -g -Wall -o client
+gcc client.c -O3 -Wall -o client
