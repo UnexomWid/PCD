@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            PSN Demo
+        </title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            #container {
+                width: 50%;
+                margin: 0 auto;
+            }
+            h1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>News</h1>
+            [|@ post : context.news |]
+                <p>[| post.content |]</p>
+                <p>
+                    tags:
+                    [|@ tag : post.tags |]
+                        [| tag |]
+                    [|end|]
+                </p>
+                <hr/>
+            [|end|]
+        </div>
+    </body>
+</html>
