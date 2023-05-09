@@ -337,7 +337,7 @@ function explore(keyssi) {
                         } else if (text === '<quit>') {
                             process.exit(0);
                         } else if (text.startsWith('[') && text.endsWith(']')) {
-                            path += (path.endsWith('/') ? '' : '/') + res.selectedText;
+                            path += (path.endsWith('/') ? '' : '/') + res.selectedText.replaceAll('[', '').replaceAll(']', '');
                             selectedFile = null;
 
                             render(path, null);
@@ -348,7 +348,7 @@ function explore(keyssi) {
                                     process.exit(1);
                                 }
 
-                                selectedFile = path + (path.endsWith('/') ? '' : '/') + text;
+                                selectedFile = path.replaceAll('[', '').replaceAll(']', '') + (path.endsWith('/') ? '' : '/') + text;
                                 render(path, content.toString());
                             });
                         }
